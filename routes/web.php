@@ -26,7 +26,15 @@ Route::get('/add_drug', 'HomeController@add_drug');
 
 Route::get('/add_category', 'HomeController@add_category');
 
+Route::get('/pagination/fetch_data', 'HomeController@fetch_data');
+
+Route::get('/edit_drug/{id}', 'HomeController@edit_drug');
+
 Route::post('/entercategory', 'HomeController@entercategory');
+
+Route::post('/enterdrug', 'HomeController@enterdrug');
+
+Route::post('/updatedrug', 'HomeController@updatedrug');
 
 
 
