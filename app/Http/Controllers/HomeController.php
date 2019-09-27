@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\DrugCategory;
 use App\Drug;
+use App\Service;
 use Session;
 use DB;
 
@@ -33,14 +34,13 @@ class HomeController extends Controller
     public function drug()
     {
         $data = DB::table('drugs')->orderBy('id', 'asc')->paginate(5);
-     return view('drug', compact('data'));
-       #return view('drug');
- }
+        return view('drug', compact('data'));
+    }
 
- function fetch_data(Request $request)
- {
-   if($request->ajax())
-   {
+    function fetch_data(Request $request)
+    {
+     if($request->ajax())
+     {
       $sort_by = $request->get('sortby');
       $sort_type = $request->get('sorttype');
       $query = $request->get('query');
@@ -109,6 +109,84 @@ public function updatedrug(Request $request){
     ]);
     Session::flash('success', 'drug updated successfully');
     return redirect('drug');
+}
+
+public function drugdelete($id)
+{
+    Drug::where('id', $id)->delete();
+    Session::flash('error', 'drug deleted successfully');
+    return redirect('drug');
+}
+
+public function service()
+{
+    $data = DB::table('services')->orderBy('id', 'asc')->paginate(5);
+    return view('service', compact('data'));
+}
+
+public function addservice()
+{
+    return view('addservice');
+}
+
+public function enterservice(Request $request)
+{
+    //return $request;
+    Service::create([
+        'NHIS_code' => $request['NHIS_code'],
+        'price' => $request['price'],
+        'description' => $request['description'],
+    ]);
+    Session::flash('success', 'service added successfully');
+    return redirect('service');
+}
+
+function fetch_service(Request $request)
+{
+ if($request->ajax())
+ {
+  $sort_by = $request->get('sortby');
+  $sort_type = $request->get('sorttype');
+  $query = $request->get('query');
+  $query = str_replace(" ", "%", $query);
+  $data = DB::table('services')
+  ->where('id', 'like', '%'.$query.'%')
+  ->orWhere('NHIS_code', 'like', '%'.$query.'%')
+  ->orWhere('description', 'like', '%'.$query.'%')
+  ->orWhere('price', 'like', '%'.$query.'%')
+  ->orderBy($sort_by, $sort_type)
+  ->paginate(5);
+  return view('pagination_data2', compact('data'))->render();
+}
+}
+
+public function editservice($id){
+    $data = Service::where('id', $id)->get();
+    return view('editservice', compact('data'));
+}
+
+public function updateservice(Request $request)
+{
+    Service::where('id', $request['id'])
+    ->update([
+        'NHIS_code' => $request['NHIS_code'],
+        'price' => $request['price'],
+        'description' => $request['description'],
+    ]);
+    Session::flash('success', 'service updated successfully');
+    return redirect('service');
+}
+
+public function servicedelete($id)
+{
+    Service::where('id', $id)->delete();
+    Session::flash('error', 'service deleted successfully');
+    return redirect('service');
+}
+
+public function consultation(Request $request)
+{
+    return view('consultation');
 }
 
 

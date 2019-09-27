@@ -8,6 +8,7 @@
        <td>{{ $row->presentation }}</td>
        <td>{{ $row->price }}</td>
        <td><a href="{{ url('/edit_drug/'.$row->id) }}"><i class="fa fa-edit"></i></a></td>
+       <td><a href="{{ url('/drugdelete/'.$row->id) }}"><i class="fa fa-trash btn btn-danger"></i></a></td>
       </tr>
       @endforeach
       <tr>

@@ -4,13 +4,19 @@
 <div class="container">
     <div class="row">
 
-    	<div class="panel panel-primary col-sm-12 col-md-10">
+    	<div class="panel panel-primary col-sm-12 col-md-11">
     		<div class="panel-heading">Drugs</div>
     		<div class="panel-body">
 
                 @if(Session::has('success'))
                 <div class="alert alert-success">
                     {{ Session::get('success') }}
+                </div>
+                @endif
+
+                @if(Session::has('error'))
+                <div class="alert alert-danger">
+                    {{ Session::get('error') }}
                 </div>
                 @endif
 
@@ -126,15 +132,6 @@
 </div>
 
 </div>
-
-
-
-
-
-
-
-
-
 
 </div>
 </div>
