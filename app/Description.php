@@ -1,0 +1,16 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Description extends Model
+{
+    protected $fillable = [
+    	'rec',
+    	'patient',
+    	'details',
+    	'days',
+    	'amount',
+    ];
+}
