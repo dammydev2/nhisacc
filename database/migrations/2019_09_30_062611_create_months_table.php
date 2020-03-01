@@ -22,6 +22,10 @@ class CreateMonthsTable extends Migration
             $table->string('nhis');
             $table->string('provider');
             $table->string('amount');
+            $table->string('diagnosis');
+            $table->string('pro_fee');
+            $table->string('drug');
+            $table->string('surgery');
             $table->timestamps();
         });
     }

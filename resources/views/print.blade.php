@@ -15,12 +15,14 @@
 				<input type="hidden" name="nhis" value="{{ $row->NHIS }}">
 				<input type="hidden" name="provider" value="{{ $row->provider }}">
 				<input type="hidden" name="rec" value="{{ $row->rec }}">
+				<input type="hidden" name="diagnosis" value="{{ $row->diagnosis }}">
+				<input type="hidden" name="name" value="{{ $row->name }}">
 				
 
 
 				<h3 style="text-transform: uppercase;"><center>{{ $row->provider }}</center></h3>
 
-				<h5 style="text-transform: uppercase;"><center>Fee Service clain form</center></h5>
+				<h5 style="text-transform: uppercase;"><center>Fee Service claim form</center></h5>
 
 				<table class="table table-bordered">
 					<tr>
@@ -58,31 +60,40 @@
 						<tr>
 							<th colspan="4">Details</th>
 							<th>Day(s)</th>
+							<th>Unit price</th>
+							<th>No of visit(s)</th>
 							<th>Amount</th>
 						</tr>
 						<?php $sum=0; $sum1=0; $sum2=0; ?>
 						@foreach($data2 as $row)
 						<tr>
 							<td colspan="4">{{ $row->details }}</td>
+							<td class="text-right">{{ number_format($row->amount,2) }}</td>
 							<td>{{ $row->days }}</td>
 							<td class="text-right">{{ number_format($total1 = $row->amount * $row->days,2) }}</td>
 						</tr>
 						<?php $sum += $total1; ?>
 						@endforeach
+						<tr>
+							<td colspan="7" class="text-right">TOTAL</td>
+							<td>{{ number_format($sum,2) }}</td>
+						</tr>
 
 						<tr>
-							<th>Details</th>
+							<th colspan="1">Details</th>
 							<th>Dosage form</th>
-							<th>Total dosage</th>
+							<th>Dosage</th>
+							<th>Price</th>
 							<th>10% Payment<br>Deduction</th>
 							<th>Amount</th>
-							<th></th>
+							<th>90% Claim</th>
 						</tr>
 						@foreach($data3 as $row)
 						<tr>
-							<td>{{ $row->name }}</td>
+							<td colspan="1">{{ $row->name }}</td>
 							<td>{{ $row->dosage }}</td>
 							<td>{{ $row->qty }}</td>
+							<td>{{ $row->price }}</td>
 							<td>{{ $percent = number_format(($row->qty * $row->price) * 0.1, 2) }}</td>
 							<td>{{ $amount = number_format(($row->qty * $row->price),2) }}</td>
 							<td class="text-right">{{ number_format($total2 = $amount - $percent, 2) }}</td>
@@ -90,27 +101,35 @@
 						<?php $sum1 += $total2; ?>
 						@endforeach
 						<tr>
+							<td colspan="7"></td>
+							<td class="text-right">{{ number_format($sum1,2) }}</td>
+						</tr>
+						<tr>
 							<th colspan="4">Details</th>
 							<th>Days/Visits</th>
 							<td></td>
 						</tr>
 						@foreach($data4 as $row)
 						<tr>
-							<td colspan="4">{{ $row->details }}</td>
+							<td colspan="5">{{ $row->details }}</td>
 							<td>{{ $row->days }}</td>
 							<td class="text-right">{{ number_format($total3 = $row->days * $row->price, 2) }}</td>
 						</tr>
 						<?php $sum2 += $total3; ?>
 						@endforeach
+						<tr>
+							<td colspan="7"></td>
+							<td>{{ number_format($sum2,2) }}</td>
+						</tr>
 						<?php $allsum = $sum + $sum1 + $sum2 ?>
 						<tr>
-							<th colspan="5" class="text-right">TOTAL</th>
+							<th colspan="7" class="text-right">GRAND TOTAL</th>
 							<th class="text-right">{{ number_format($allsum,2) }}</th>
 						</tr>
 
 					</table>
 
-					<p style="padding: 10px;"><b>NB </b>Attach photocopies of prescriptions, investigations and other neccesary records to substantiate your claim. Your claim will not be processed if such evidence is not found where applicable</p>
+					<!-- <p style="padding: 10px;"><b>NB </b>Attach photocopies of prescriptions, investigations and other neccesary records to substantiate your claim. Your claim will not be processed if such evidence is not found where applicable</p> -->
 					<p>&nbsp;</p>
 					<p>
 						<table width="90%" style="margin-left: 120px;">
@@ -120,11 +139,15 @@
 							</tr>
 							<tr>
 								<td>Name, Sign & Stamp of HCP</td>
+								<td>Prepared by</td>
 								<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date</td>
 							</tr>
 						</table>
 
 						<input type="hidden" name="amount" value="{{ $allsum }}">
+						<input type="hidden" name="pro_fee" value="{{ $sum }}">
+						<input type="hidden" name="drug" value="{{ $sum1 }}">
+						<input type="hidden" name="surgery" value="{{ $sum2 }}">
 						<input type="submit" name="" value="print" class="btn btn-primary btn-block" onclick="window.print()">
 					</form>
 
