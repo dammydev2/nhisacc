@@ -86,35 +86,35 @@
         <div class="form-group">
           <label class="control-label">Date of Presentation</label>
           <div class="controls">
-            <input type="date" class="form-control" name="presentation" required="" id="required" >
+            <input type="date" class="form-control" name="presentation" id="required" >
           </div>
         </div>
 
         <div class="form-group">
           <label class="control-label">Date of Admission</label>
           <div class="controls">
-            <input type="date" class="form-control" name="admission" required="" id="required">
+            <input type="date" class="form-control" name="admission" id="required">
           </div>
         </div>
 
         <div class="form-group">
           <label class="control-label">Date of Discharge</label>
           <div class="controls">
-            <input type="date" class="form-control" required="" name="discharge" id="required">
+            <input type="date" class="form-control" name="discharge" id="required">
           </div>
         </div>
 
         <div class="form-group">
           <label class="control-label">Diagnosis</label>
           <div class="controls">
-            <input type="text" class="form-control" name="diagnosis" required="" id="required">
+            <input type="text" class="form-control" name="diagnosis" id="required">
           </div>
         </div>
 
         <div class="form-group">
           <label class="control-label">Patient Phone Number</label>
           <div class="controls">
-            <input type="text" readonly="" name="phone" maxlength="11" required=""  id="phone" pattern="\d{11}" class="form-control">
+            <input type="text" readonly="" name="phone" maxlength="11"  id="phone" pattern="\d{11}" class="form-control">
           </div>
         </div>
 
@@ -122,10 +122,10 @@
           <label class="control-label">Type of PA Code</label>
           <div class="controls">
             <label>
-              <input type="radio" class="inputbox" name="code" required="" onchange="show(this.value)" value="Referral">Referral
+              <input type="radio" class="inputbox" name="code" onchange="show(this.value)" value="Referral">Referral
             </label><br>
             <label>
-              <input type="radio" class="inputbox" id="e1" required="" onchange="show2()" name="code" value="Station">Out of Station
+              <input type="radio" class="inputbox" id="e1" onchange="show2()" name="code" value="Station">Out of Station
             </label>                         
           </div>
         </div>

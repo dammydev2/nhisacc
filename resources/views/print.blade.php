@@ -59,6 +59,7 @@
 					<table class="table table-bordered">
 						<tr>
 							<th colspan="4">Details</th>
+							<th>Day(s)</th>
 							<th>Unit price</th>
 							<th>No of visit(s)</th>
 							<th>Amount</th>
@@ -137,6 +138,7 @@
 								<td>_______________________</td>
 							</tr>
 							<tr>
+								<td>Name, Sign & Stamp of HCP</td>
 								<td>Prepared by</td>
 								<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date</td>
 							</tr>

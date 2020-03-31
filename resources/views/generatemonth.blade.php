@@ -13,6 +13,10 @@
 			<table class="table table-border">
 				<tr>
 					<th>Date</th>
+<<<<<<< HEAD
+					<th>NHIS No</th>
+					<th>Name</th>
+=======
 					<th>Name</th>
 					<th>Approval Code</th>
 					<th>NHIS No</th>
@@ -21,11 +25,19 @@
 					<th>Drugs</th>
 					<th>Investigation</th>
 					<th>Procudure / Surgery</th>
+>>>>>>> 44de3512f806c635a472d5b3151a94a6a9f14be5
 					<th>Amount</th>
 					<th>Privider</th>
 				</tr>
 				<?php $sum=0; ?>
 				@foreach($data as $row)
+<<<<<<< HEAD
+				<?php $sum+= $row->amount ?>
+				<tr>
+					<td>{{ $row->created_at }}</td>
+					<td>{{ $row->nhis }}</td>
+					<td>{{ $row->name }}</td>
+=======
 				<?php 
 				$sum+= $row->amount;
 				$date =  $row->created_at;   
@@ -43,12 +55,17 @@
 					<td>{{ $row->drug }}</td>
 					<td></td>
 					<td>{{ $row->surgery }}</td>
+>>>>>>> 44de3512f806c635a472d5b3151a94a6a9f14be5
 					<td>{{ number_format($row->amount, 2) }}</td>
 					<td>{{ $row->provider }}</td>
 				</tr>
 				@endforeach
 				<tr>
+<<<<<<< HEAD
+					<th colspan="3" class="text-right">TOTAL</th>
+=======
 					<th colspan="9" class="text-right">TOTAL</th>
+>>>>>>> 44de3512f806c635a472d5b3151a94a6a9f14be5
 					<th>{{ number_format($sum,2) }}</th>
 				</tr>
 			</table>

@@ -28,6 +28,10 @@ Route::get('/add_category', 'HomeController@add_category');
 
 Route::get('/service', 'HomeController@service');
 
+Route::get('/patient', 'HomeController@patient');
+
+Route::get('/addpatient', 'HomeController@addpatient');
+
 Route::get('/addservice', 'HomeController@addservice');
 
 Route::get('/consultation', 'HomeController@consultation');
@@ -83,6 +87,8 @@ Route::post('/confirm_rec', 'HomeController@confirm_rec');
 Route::post('/savemonth', 'HomeController@savemonth');
 
 Route::post('/generatemonth', 'HomeController@generatemonth');
+
+Route::post('/enterpatient', 'HomeController@enterpatient');
 
 Route::get('/live_search/action', 'HomeController@action')->name('live_search.action');
 
