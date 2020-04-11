@@ -39,7 +39,7 @@ class HomeController extends Controller
 
     public function drug()
     {
-      $data = DB::table('drugs')->orderBy('id', 'asc')->paginate(5);
+      $data = DB::table('drugs')->orderBy('id', 'asc')->paginate(50);
       return view('drug', compact('data'));
     }
 
@@ -95,7 +95,8 @@ class HomeController extends Controller
       'price' => $request['price'],
     ]);
     Session::flash('success', 'drug added successfully');
-    return redirect('drug');
+    //return redirect('drug');
+    return redirect()->back()->with('success', 'drug added successfully');
   }
 
   public function edit_drug($id){
@@ -126,7 +127,7 @@ class HomeController extends Controller
 
   public function service()
   {
-    $data = DB::table('services')->orderBy('id', 'asc')->paginate(5);
+    $data = DB::table('services')->orderBy('id', 'asc')->paginate(50);
     return view('service', compact('data'));
   }
 
@@ -142,9 +143,11 @@ class HomeController extends Controller
       'NHIS_code' => $request['NHIS_code'],
       'price' => $request['price'],
       'description' => $request['description'],
+      'type' => $request['type']
     ]);
     Session::flash('success', 'service added successfully');
-    return redirect('service');
+    //return redirect('service');
+    return redirect()->back()->with('success', 'service added successfully');
   }
 
   function fetch_service(Request $request)
@@ -216,6 +219,7 @@ public function enterconsultation(Request $request)
   ]);
   Session::put('rec', $rec);
   Session::put('patient', $request['patient']);
+  Session::put('authorization', $request['authorization']);
   return redirect('first');
 }
 
@@ -241,7 +245,8 @@ public function enterfirst(Request $request)
 
 public function prescription()
 {
-  return view('prescription');
+  $data = DrugCategory::all();
+  return view('prescription', compact('data'));
 }
 
 public function action(Request $request)
@@ -273,7 +278,6 @@ public function action(Request $request)
          foreach($data as $row)
          {
           $output .= '
-
           <div class="col-sm-12 rst"
           data-price = "'.$row->price.'"
           data-name = "'.$row->name.'"
@@ -340,7 +344,7 @@ public function action2(Request $request)
        }
        else
        {
-         $data = DB::table('service')
+         $data = DB::table('services')
          ->orderBy('id', 'desc')
          ->get();
        }
@@ -350,9 +354,9 @@ public function action2(Request $request)
          foreach($data as $row)
          {
           $output .= '
-
           <div class="col-sm-12 rst"
           data-price = "'.$row->price.'"
+          data-serviceType = "'.$row->type.'"
           data-nhis = "'.$row->NHIS_code.'"
           data-description = "'.$row->description.'"
           data-id = "'.$row->id.'"
@@ -387,6 +391,7 @@ public function action2(Request $request)
       'price' => $request['price'][$i],
       'rec' => $request['rec'],
       'patient' => $request['patient'],
+      'type' => $request['type'][$i],
     ]);
   }
   return redirect('print');
@@ -400,8 +405,10 @@ public function print()
   $data2 = Description::where('rec', $rec)->get();
   $data3 = Drugsold::where('rec', $rec)->get();
   $data4 = Service_charge::where('rec', $rec)->get();
+  $investigation = Service_charge::where('rec', $rec)->where('type', 'investigation')->get();
+  $surgery = Service_charge::where('rec', $rec)->where('type', 'surgery/Other procedure')->get();
 
-  return view('print', compact('data', 'data2', 'data3', 'data4'));
+  return view('print', compact('data', 'data2', 'data3', 'data4', 'surgery', 'investigation'));
 }
 
 public function presHistory()
@@ -448,6 +455,12 @@ public function savemonth(Request $request)
       'nhis' => $request['nhis'],
       'provider' => $request['provider'],
       'amount' => $request['amount'],
+      'diagnosis' => $request['diagnosis'],
+      'pro_fee' => $request['pro_fee'],
+      'drug' => $request['drug'],
+      'surgery' => $request['surgery'],
+      'approval_code' => Session::get('authorization'),
+      'investigation' => $request['investigation']
     ]);
     return redirect('print');
   }
@@ -480,7 +493,6 @@ public function patient()
 
 public function addpatient()
 {
-<<<<<<< HEAD
   return view('patient.addpatient');
 }
 
@@ -525,300 +537,14 @@ public function enterpatient(Request $request)
   return redirect('patient');
 }
 
-
-=======
-    $data = Patient::all();
-    return view('consultation', compact('data'));
-}
-
-public function enterconsultation(Request $request)
+public function patientDelete($id)
 {
-    $rec = rand();
-    Consultation::create([
-        'name' => $request['name'],
-        'NHIS' => $request['NHIS'],
-        'patient' => $request['patient'],
-        'provider' => $request['provider'],
-        'authorization' => $request['authorization'],
-        'HCP' => $request['HCP'],
-        'presentation' => $request['presentation'],
-        'admission' => $request['admission'],
-        'discharge' => $request['discharge'],
-        'diagnosis' => $request['diagnosis'],
-        'phone' => $request['phone'],
-        'code' => $request['code'],
-        'rec' => $rec,
-    ]);
-    Session::put('rec', $rec);
-    Session::put('patient', $request['patient']);
-    return redirect('first');
-}
-
-public function first()
-{
-    return view('first');
-}
-
-public function enterfirst(Request $request)
-{
-    $num = count($_POST['day']);
-    for ($i=0; $i < $num; $i++) { 
-        Description::create([
-        'rec' => $request['rec'],
-        'patient' => $request['patient'],
-        'details' => $request['nm'][$i],
-        'days' => $request['day'][$i],
-        'amount' => $request['amount'][$i],
-    ]); 
-    }
-    return redirect('prescription');
-}
-
-public function prescription()
-{
-    return view('prescription');
-}
-
-public function action(Request $request)
-    {
-     if($request->ajax())
-     {
-      $output = '';
-      $query = $request->get('query');
-      if($query != '')
-      {
-       $data = Drug::where('name', 'like', '%'.$query.'%')
-     //->orWhere('name', 'like', '%'.$query.'%')
-        /** ->orWhere('City', 'like', '%'.$query.'%')
-         ->orWhere('PostalCode', 'like', '%'.$query.'%')
-         ->orWhere('Country', 'like', '%'.$query.'%')**/
-         ->orderBy('id', 'desc')
-         ->get();
-         
-       }
-       else
-       {
-         $data = DB::table('tbl_customer')
-         ->orderBy('CustomerID', 'desc')
-         ->get();
-       }
-       $total_row = $data->count();
-       if($total_row > 0)
-       {
-         foreach($data as $row)
-         {
-          $output .= '
-
-          <div class="col-sm-12 rst"
-          data-price = "'.$row->price.'"
-          data-name = "'.$row->name.'"
-          data-dosage = "'.$row->dosage.'"
-          data-id = "'.$row->id.'"
-          style="cursor:pointer;"
-          >'.$row->name.' ('. $row->category.' '. $row->dosage.' '. $row->strength.')</div>';
-        }
-      }
-      else
-      {
-       $output = '
-       <tr>
-       <td align="center" colspan="5">No Data Found</td>
-       </tr>
-       ';
-     }
-     $data = array(
-       'table_data'  => $output,
-       'total_data'  => $total_row
-     );
-
-     echo json_encode($data);
-   }
- }
-
- public function sale_enter(Request $request)
- {
-    $num = count($_POST['name']);
-    for ($i=0; $i < $num; $i++) { 
-        Drugsold::create([
-            'rec' => $request['rec'],
-            'patient' => $request['patient'],
-            'name' => $request['name'][$i],
-            'qty' => $request['qty'][$i],
-            'price' => $request['price'][$i],
-            'dosage' => $request['dosage'][$i],
-        ]);
-    }
-    return redirect('patientservice');
- }
-
- public function patientservice()
- {
-    return view('patientservice');
- }
-
- public function action2(Request $request)
-    {
-     if($request->ajax())
-     {
-      $output = '';
-      $query = $request->get('query');
-      if($query != '')
-      {
-       $data = Service::where('NHIS_code', 'like', '%'.$query.'%')
-        ->orWhere('description', 'like', '%'.$query.'%')
-        /** ->orWhere('City', 'like', '%'.$query.'%')
-         ->orWhere('PostalCode', 'like', '%'.$query.'%')
-         ->orWhere('Country', 'like', '%'.$query.'%')**/
-         ->orderBy('id', 'desc')
-         ->get();
-         
-       }
-       else
-       {
-         $data = DB::table('service')
-         ->orderBy('id', 'desc')
-         ->get();
-       }
-       $total_row = $data->count();
-       if($total_row > 0)
-       {
-         foreach($data as $row)
-         {
-          $output .= '
-
-          <div class="col-sm-12 rst"
-          data-price = "'.$row->price.'"
-          data-nhis = "'.$row->NHIS_code.'"
-          data-description = "'.$row->description.'"
-          data-id = "'.$row->id.'"
-          style="cursor:pointer;"
-          >'.$row->description.'</div>';
-        }
-      }
-      else
-      {
-       $output = '
-       <tr>
-       <td align="center" colspan="5">No Data Found</td>
-       </tr>
-       ';
-     }
-     $data = array(
-       'table_data'  => $output,
-       'total_data'  => $total_row
-     );
-
-     echo json_encode($data);
-   }
- }
-
- public function service_enter(Request $request)
- {
-  $num = count($_POST['qty']);
-  for ($i=0; $i < $num; $i++) { 
-    Service_charge::create([
-      'details' => $request['name'][$i],
-      'days' => $request['qty'][$i],
-      'price' => $request['price'][$i],
-      'rec' => $request['rec'],
-      'patient' => $request['patient'],
-    ]);
-  }
-  return redirect('print');
- }
-
- public function print()
- {
-  $patient = Session::get('patient');
-  $rec = Session::get('rec');
-  $data = Consultation::where('rec', $rec)->get();
-  $data2 = Description::where('rec', $rec)->get();
-  $data3 = Drugsold::where('rec', $rec)->get();
-  $data4 = Service_charge::where('rec', $rec)->get();
-
-  return view('print', compact('data', 'data2', 'data3', 'data4'));
- }
-
- public function presHistory()
- {
-  $data = Patient::all();
-  return view('presHistory', compact('data'));
- }
-
- public function check_history(Request $request)
- {
-  $patient = $request['patient'];
-  Session::put('patient', $request['patient']);
-  return redirect('getrec');
- }
-
- public function getrec()
- {
-  $patient = Session::get('patient');
-  #return $patient;
-  $data = Service_charge::where('patient', $patient)->orderBy('id', 'desc')->distinct()->get('rec');
-  if ($data->isEmpty()) {
-    Session::flash('error', 'no record found');
-    return redirect('presHistory');
-  }
-  return view('getrec', compact('data'));
- }
-
- public function confirm_rec(Request $request)
- {
-  Session::put('rec', $request['rec']);
-  return redirect('print');
- }
-
- public function savemonth(Request $request)
- {
-  $rec = $request['rec'];
-  $data = Month::where('rec', $request['rec'])->get();
-  if ($data->isEmpty()) {
-    Month::create([
-      'month' => date('m'),
-      'year' => date('Y'),
-      'name' => $request['name'],
-      'rec' => $request['rec'],
-      'nhis' => $request['nhis'],
-      'provider' => $request['provider'],
-      'amount' => $request['amount'],
-      'diagnosis' => $request['diagnosis'],
-      'pro_fee' => $request['pro_fee'],
-      'drug' => $request['drug'],
-      'surgery' => $request['surgery'],
-      'investigation' => $request['investigation'],
-    ]);
-    return redirect('print');
-  }
-  return redirect('print');
- }
-
- public function month()
- {
-  $data = Month::distinct()->get('provider');
-  return view('month', compact('data'));
- }
-
- public function generatemonth(Request $request)
- {
-  $data = Month::where('month', $request['month'])
-  ->where('year', $request['year'])
-  ->where('provider', $request['provider'])->get();
-  if ($data->isEmpty()) {
-    Session::flash('error', 'no record found');
-    return redirect('month');
-  }
-  return view('generatemonth', compact('data'));
- }
->>>>>>> 44de3512f806c635a472d5b3151a94a6a9f14be5
-
-
+  Patient::where('id', $id)->delete();
+   Session::flash('danger', 'Patient Deleted Successfuly');
+  return redirect('patient');
 }
 
 
 
 
-
-
-
+}

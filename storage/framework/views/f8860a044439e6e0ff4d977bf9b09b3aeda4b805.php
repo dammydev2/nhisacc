@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 <div class="container">
   <div class="row">
 
@@ -8,17 +6,19 @@
     <div class="panel-heading">Drugs</div>
     <div class="panel-body">
 
-      @if(Session::has('success'))
+      <?php if(Session::has('success')): ?>
       <div class="alert alert-success">
-        {{ Session::get('success') }}
-      </div>
-      @endif
+        <?php echo e(Session::get('success')); ?>
 
-      @if(Session::has('error'))
-      <div class="alert alert-danger">
-        {{ Session::get('error') }}
       </div>
-      @endif
+      <?php endif; ?>
+
+      <?php if(Session::has('error')): ?>
+      <div class="alert alert-danger">
+        <?php echo e(Session::get('error')); ?>
+
+      </div>
+      <?php endif; ?>
 
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
@@ -27,7 +27,7 @@
       <div class="container col-md-12">
        <div class="row">
         <div class="col-md-9">
-          <a href="{{ url('/add_drug') }}" class="btn btn-primary">Add new Drug <i class="fa fa-plus"></i></a>
+          <a href="<?php echo e(url('/add_drug')); ?>" class="btn btn-primary">Add new Drug <i class="fa fa-plus"></i></a>
         </div>
         <div class="col-md-3">
          <div class="form-group">
@@ -49,22 +49,23 @@
        </tr>
      </thead>
      <tbody>
-      @foreach($data as $row)
+      <?php $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
       <tr>
-       <td>{{ $row->id}}</td>
-       <td>{{ $row->name }}</td>
-       <td>{{ $row->category }}</td>
-       <td>{{ $row->dosage }}</td>
-       <td>{{ $row->strength }}</td>
-       <td>{{ $row->presentation }}</td>
-       <td>{{ $row->price }}</td>
-       <td><a href="{{ url('/edit_drug/'.$row->id) }}"><i class="fa fa-edit"></i></a></td>
-       <td><a href="{{ url('/drugdelete/'.$row->id) }}"><i class="fa fa-trash btn btn-danger"></i></a></td>
+       <td><?php echo e($row->id); ?></td>
+       <td><?php echo e($row->name); ?></td>
+       <td><?php echo e($row->category); ?></td>
+       <td><?php echo e($row->dosage); ?></td>
+       <td><?php echo e($row->strength); ?></td>
+       <td><?php echo e($row->presentation); ?></td>
+       <td><?php echo e($row->price); ?></td>
+       <td><a href="<?php echo e(url('/edit_drug/'.$row->id)); ?>"><i class="fa fa-edit"></i></a></td>
+       <td><a href="<?php echo e(url('/drugdelete/'.$row->id)); ?>"><i class="fa fa-trash btn btn-danger"></i></a></td>
      </tr>
-     @endforeach
+     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
      <tr>
        <td colspan="3" align="center">
-        {!! $data->links() !!}
+        <?php echo $data->links(); ?>
+
       </td>
     </tr>
   </tbody>
@@ -83,4 +84,6 @@
 
 </div>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\nhisacc\resources\views/drug.blade.php ENDPATH**/ ?>

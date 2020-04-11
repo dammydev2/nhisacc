@@ -153,7 +153,7 @@
 
 					<div class="form-group col-lg-12 has-feedback{{ $errors->has('summary') ? ' has-error' : '' }}">
 						<label>Summary of Treatment</label>
-						<input type="text" class="form-control" name="summary" value="{{ old('summary') }}" placeholder="Summary of Treatment">
+						<input type="text" class="form-control" name="summary" value="NIL" readonly="" placeholder="Summary of Treatment">
 						<span class="form-control-feedback"></span>
 
 						@if ($errors->has('summary'))
@@ -165,7 +165,7 @@
 
 					<div class="form-group col-lg-6 has-feedback{{ $errors->has('diagnosis') ? ' has-error' : '' }}">
 						<label>Diagnosis</label>
-						<input type="text" class="form-control" name="diagnosis" value="{{ old('diagnosis') }}" placeholder="Diagnosis">
+						<input type="text" class="form-control" name="diagnosis" value="NIL" readonly="" placeholder="Diagnosis">
 						<span class="form-control-feedback"></span>
 
 						@if ($errors->has('diagnosis'))

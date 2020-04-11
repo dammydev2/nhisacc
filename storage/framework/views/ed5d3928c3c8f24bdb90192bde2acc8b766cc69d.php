@@ -1,10 +1,8 @@
-@extends('layouts.app')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 <div class="container">
   <div class="row">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="{{ URL::asset('js/ajax.js') }}"></script>
+    <script src="<?php echo e(URL::asset('js/ajax.js')); ?>"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
@@ -29,9 +27,9 @@
           </div>
           <div class="modal-body">
             
-            <form method="post" action="{{ url('/enterservice') }}">
+            <form method="post" action="<?php echo e(url('/enterservice')); ?>">
 
-              @csrf
+              <?php echo csrf_field(); ?>
 
               <div class="form-group">
                 <label class="control-label">NHIS CODE</label>
@@ -77,11 +75,12 @@
     </div>
 
     <div class="col-sm-12">
-      @if(Session::has('success'))
+      <?php if(Session::has('success')): ?>
       <div class="alert alert-success">
-        {{ Session::get('success') }}
+        <?php echo e(Session::get('success')); ?>
+
       </div>
-      @endif
+      <?php endif; ?>
       <!-- <h3 align="center">Drug Live search </h3><br /> -->
       <div class="panel panel-default">
         <div class="panel-heading">Search Service(s)</div>
@@ -95,11 +94,12 @@
           </div>
           <div class="col-sm-12">
             <h3 align="center">Total Data : <span id="total_records"></span></h3>
-            <form method="post" action="{{ url('/service_enter') }}" id="form1">
-              {{ csrf_field() }}
+            <form method="post" action="<?php echo e(url('/service_enter')); ?>" id="form1">
+              <?php echo e(csrf_field()); ?>
 
-              <input type="hidden" name="rec" value="{{ Session::get('rec') }}">
-              <input type="hidden" name="patient" value="{{ Session::get('patient') }}">
+
+              <input type="hidden" name="rec" value="<?php echo e(Session::get('rec')); ?>">
+              <input type="hidden" name="patient" value="<?php echo e(Session::get('patient')); ?>">
 
               <table class="table table-striped table-bordered items">
                <thead>
@@ -149,7 +149,7 @@
    function fetch_customer_data(query = '')
    {
     $.ajax({
-     url:"{{ route('live_search2.action') }}",
+     url:"<?php echo e(route('live_search2.action')); ?>",
      method:'GET',
      data:{query:query},
      dataType:'json',
@@ -254,4 +254,6 @@
 
 </div>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\nhisacc\resources\views/patientservice.blade.php ENDPATH**/ ?>

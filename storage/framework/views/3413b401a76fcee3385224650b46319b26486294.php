@@ -24,11 +24,11 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
 
-    @yield('css')
+    <?php echo $__env->yieldContent('css'); ?>
 </head>
 
 <body class="skin-blue sidebar-mini">
-@if (!Auth::guest())
+<?php if(!Auth::guest()): ?>
     <div class="wrapper">
         <!-- Main Header -->
         <header class="main-header">
@@ -55,7 +55,7 @@
                                 <img src="http://infyom.com/images/logo/blue_logo_150x150.jpg"
                                      class="user-image" alt="User Image"/>
                                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                                <span class="hidden-xs">{!! Auth::user()->name !!}</span>
+                                <span class="hidden-xs"><?php echo Auth::user()->name; ?></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- The user image in the menu -->
@@ -63,8 +63,9 @@
                                     <img src="http://infyom.com/images/logo/blue_logo_150x150.jpg"
                                          class="img-circle" alt="User Image"/>
                                     <p>
-                                        {!! Auth::user()->name !!}
-                                        <small>Member since {!! Auth::user()->created_at->format('M. Y') !!}</small>
+                                        <?php echo Auth::user()->name; ?>
+
+                                        <small>Member since <?php echo Auth::user()->created_at->format('M. Y'); ?></small>
                                     </p>
                                 </li>
                                 <!-- Menu Footer-->
@@ -73,12 +74,13 @@
                                         <a href="#" class="btn btn-default btn-flat">Profile</a>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="{!! url('/logout') !!}" class="btn btn-default btn-flat"
+                                        <a href="<?php echo url('/logout'); ?>" class="btn btn-default btn-flat"
                                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                             Sign out
                                         </a>
-                                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
+                                        <form id="logout-form" action="<?php echo e(url('/logout')); ?>" method="POST" style="display: none;">
+                                            <?php echo e(csrf_field()); ?>
+
                                         </form>
                                     </div>
                                 </li>
@@ -90,19 +92,19 @@
         </header>
 
         <!-- Left side column. contains the logo and sidebar -->
-        @include('layouts.sidebar')
+        <?php echo $__env->make('layouts.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-            @yield('content')
+            <?php echo $__env->yieldContent('content'); ?>
         </div>
 
         <!-- Main Footer -->
         <footer class="main-footer" style="max-height: 100px;text-align: center">
-            <strong>Copyright © {{ date('Y') }} <a href="#">ICT Department</a>.</strong> All rights reserved.
+            <strong>Copyright © <?php echo e(date('Y')); ?> <a href="#">ICT Department</a>.</strong> All rights reserved.
         </footer>
 
     </div>
-@else
+<?php else: ?>
     <nav class="navbar navbar-default navbar-static-top">
         <div class="container">
             <div class="navbar-header">
@@ -117,7 +119,7 @@
                 </button>
 
                 <!-- Branding Image -->
-                <a class="navbar-brand" href="{!! url('/') !!}">
+                <a class="navbar-brand" href="<?php echo url('/'); ?>">
                     InfyOm Generator
                 </a>
             </div>
@@ -125,14 +127,14 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{!! url('/home') !!}">Home</a></li>
+                    <li><a href="<?php echo url('/home'); ?>">Home</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
-                    <li><a href="{!! url('/login') !!}">Login</a></li>
-                    <li><a href="{!! url('/register') !!}">Register</a></li>
+                    <li><a href="<?php echo url('/login'); ?>">Login</a></li>
+                    <li><a href="<?php echo url('/register'); ?>">Register</a></li>
                 </ul>
             </div>
         </div>
@@ -142,12 +144,12 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    @yield('content')
+                    <?php echo $__env->yieldContent('content'); ?>
                 </div>
             </div>
         </div>
     </div>
-    @endif
+    <?php endif; ?>
 
     <!-- jQuery 3.1.1 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -161,6 +163,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
 
-    @yield('scripts')
+    <?php echo $__env->yieldContent('scripts'); ?>
 </body>
-</html>
+</html><?php /**PATH C:\xampp\htdocs\nhisacc\resources\views/layouts/app.blade.php ENDPATH**/ ?>

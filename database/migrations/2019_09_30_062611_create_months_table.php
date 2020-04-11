@@ -26,6 +26,8 @@ class CreateMonthsTable extends Migration
             $table->string('pro_fee');
             $table->string('drug');
             $table->string('surgery');
+            $table->string('investigation');
+            $table->string('approval_code');
             $table->timestamps();
         });
     }

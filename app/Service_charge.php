@@ -12,5 +12,6 @@ class Service_charge extends Model
     	'price',
     	'rec',
     	'patient',
+    	'type',
     ];
 }

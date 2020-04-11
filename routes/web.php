@@ -18,6 +18,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/our_backup_database', 'DBController@our_backup_database')->name('our_backup_database');
+
 Route::get('/home', 'HomeController@index');
 
 Route::get('/drug', 'HomeController@drug');
@@ -59,6 +61,8 @@ Route::get('/edit_drug/{id}', 'HomeController@edit_drug');
 Route::get('/editservice/{id}', 'HomeController@editservice');
 
 Route::get('/drugdelete/{id}', 'HomeController@drugdelete');
+
+Route::get('/patientDelete/{id}', 'HomeController@patientDelete');
 
 Route::get('/servicedelete/{id}', 'HomeController@servicedelete');
 

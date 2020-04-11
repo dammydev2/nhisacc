@@ -10,5 +10,6 @@ class Service extends Model
     	'NHIS_code',
     	'description',
     	'price',
+    	'type'
     ];
 }

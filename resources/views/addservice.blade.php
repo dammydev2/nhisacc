@@ -26,6 +26,17 @@
             <input type="text" class="form-control" name="NHIS_code" id="required" maxlength="12" required="required"><!-- pattern="\d{12}" -->
           </div>
         </div>
+
+        <div class="form-group">
+          <label class="control-label">Type</label>
+          <div class="controls">
+            <select name="type" class="form-control">
+              <option>Investigation</option>
+              <option>surgery/Other procedure</option>
+            </select>
+          </div>
+        </div>
+
         <div class="form-group">
           <label class="control-label">DESCRIPTON</label>
           <div class="controls">

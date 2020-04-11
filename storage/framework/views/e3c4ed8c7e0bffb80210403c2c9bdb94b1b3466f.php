@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 <div class="container">
     <div class="row">
 
@@ -10,12 +8,12 @@
           <div class="panel-heading">Other Description</div>
           <div class="panel-body">
 
-             <form method="post" action="{{ url('/enterfirst') }}">
+             <form method="post" action="<?php echo e(url('/enterfirst')); ?>">
 
-                @csrf
+                <?php echo csrf_field(); ?>
 
-                <input type="text" value="{{ Session::get('patient') }}" name="patient" style="display: none;">
-                <input type="text" value="{{ Session::get('rec') }}" name="rec" style="display: none;">
+                <input type="text" value="<?php echo e(Session::get('patient')); ?>" name="patient" style="display: none;">
+                <input type="text" value="<?php echo e(Session::get('rec')); ?>" name="rec" style="display: none;">
 
                 <table class="table table-bordered table-striped list">
                     <thead>
@@ -62,4 +60,6 @@
 
 </div>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\nhisacc\resources\views/first.blade.php ENDPATH**/ ?>

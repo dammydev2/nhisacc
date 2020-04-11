@@ -20,6 +20,7 @@ class CreateServiceChargesTable extends Migration
             $table->string('price');
             $table->string('rec');
             $table->string('patient');
+            $table->string('type');
             $table->timestamps();
         });
     }

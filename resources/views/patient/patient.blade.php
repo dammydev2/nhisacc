@@ -10,6 +10,12 @@
 		</div>
 		@endif
 
+		@if(Session::has('danger'))
+		<div class="alert alert-danger">
+			{{ Session::get('danger') }}
+		</div>
+		@endif
+
 		{{ $data->links() }}
 
 		<div class="span3 achievements-wrapper">
@@ -21,7 +27,7 @@
 					<th></th>
 					<th>Name</th>
 					<th>Patient id</th>
-					<th>HNIS id</th>
+					<th>NHIS ID</th>
 					<th>HMO</th>
 					<th>Phone</th>
 					<th>Ministry</th>
@@ -35,6 +41,7 @@
 					<th>Summary</th>
 					<th>Diagnosis</th>
 					<th>Regst. Date</th>
+					<th></th>
 				</tr>
 				@foreach($data as $row)
 				<tr>
@@ -55,6 +62,7 @@
 					<td>{{ $row->summary }}</td>
 					<td>{{ $row->diagnosis }}</td>
 					<td>{{ $row->date }}</td>
+					<td><a href="{{ url('/patientDelete/'.$row->id) }}"><i class="fa fa-trash btn btn-danger"></i></a></td>
 				</tr>
 				@endforeach
 			</table>
@@ -67,8 +75,8 @@
 <style type="text/css">
 	.achievements-wrapper 
 	{ 
-		height: 300px; 
-		width: 900px; 
+		height: 700px; 
+		width: 1000px; 
 		overflow: auto; 
 	}
 

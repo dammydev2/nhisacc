@@ -35,6 +35,7 @@
 					<th>Summary</th>
 					<th>Diagnosis</th>
 					<th>Regst. Date</th>
+					<th></th>
 				</tr>
 				@foreach($data as $row)
 				<tr>
@@ -55,6 +56,7 @@
 					<td>{{ $row->summary }}</td>
 					<td>{{ $row->diagnosis }}</td>
 					<td>{{ $row->date }}</td>
+					
 				</tr>
 				@endforeach
 			</table>
