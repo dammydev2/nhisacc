@@ -37,6 +37,8 @@
     </div>
     <div class="table-responsive">
       <table class="table table-striped table-bordered">
+        <?php echo $data->links(); ?>
+
        <thead>
         <tr>
          <th class="sorting" data-sorting_type="asc" data-column_name="id" style="cursor: pointer">ID <span id="id_icon"></span></th>

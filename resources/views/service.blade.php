@@ -40,7 +40,7 @@
        <thead>
         <tr>
          <th class="sorting" data-sorting_type="asc" data-column_name="id" style="cursor: pointer">ID <span id="id_icon"></span></th>
-         <th class="sorting" data-sorting_type="asc" data-column_name="post_title" style="cursor: pointer">NHIS Code <span id="post_title_icon"></span></th>
+         <th class="sorting" data-sorting_type="asc" data-column_name="post_title" style="width: 120px; cursor: pointer">NHIS Code <span id="post_title_icon"></span></th>
          <th>Description</th>
          <th>Price</th>
          <th>Type</th>
@@ -52,7 +52,7 @@
          <td>{{ $row->id}}</td>
          <td>{{ $row->NHIS_code }}</td>
          <td>{{ $row->description }}</td>
-         <td>{{ number_format($row->price, 2) }}</td>
+         <td>{{ number_format(str_replace( ',', '', $row->price ), 2) }}</td>
          <td> {{ $row->type }} </td>
          <td><a href="{{ url('/editservice/'.$row->id) }}"><i class="fa fa-edit"></i></a></td>
          <td><a href="{{ url('/servicedelete/'.$row->id) }}"><i class="fa fa-trash btn btn-danger"></i></a></td>
