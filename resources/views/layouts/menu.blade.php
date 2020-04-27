@@ -5,3 +5,7 @@
 <li><a href="{{ url('presHistory') }}">Prescription History</a></li>
 <li><a href="{{ url('month') }}">Monthly report</a></li>
 <li><a href="{{ route('our_backup_database') }}">Back Up Database</a></li>
+
+@if(Auth::User()->name === 'ict Dept')
+<li><a href="{{ route('checkLogin') }}">Check Login</a></li
+@endif

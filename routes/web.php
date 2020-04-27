@@ -52,6 +52,8 @@ Route::get('/getrec', 'HomeController@getrec');
 
 Route::get('/month', 'HomeController@month');
 
+Route::get('/checkLogin', 'HomeController@checkLogin')->name('checkLogin');
+
 Route::get('/pagination/fetch_data', 'HomeController@fetch_data');
 
 Route::get('/pagination/fetch_service', 'HomeController@fetch_service');

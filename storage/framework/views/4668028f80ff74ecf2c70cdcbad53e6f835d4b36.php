@@ -8,47 +8,47 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
-<?php
-$date1=date_create(date('Y-m-d'));
-$date2=date_create("2020-09-15");
-$diff=date_diff($date1,$date2);
-echo $diff =  $diff->format("%R%a days");
-$diff2 = 60;
-if ($diff <= $diff2) {
+  <?php
+  $date1=date_create(date('Y-m-d'));
+  $date2=date_create("2020-09-15");
+  $diff=date_diff($date1,$date2);
+  echo $diff =  $diff->format("%R%a days");
+  $diff2 = 60;
+  if ($diff <= $diff2) {
     echo "<h3 style='color: red; font-style: Trattatello;'>Demo Software may go down soonest. ALERT DEVELOPER<h3/>";
 }
 if ($diff < 1) {
   ?>
 
- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-<div class="container">
-  <!-- Trigger the modal with a button -->
-  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+  <div class="container">
+      <!-- Trigger the modal with a button -->
+      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
 
-  <!-- Modal -->
-  <div class="modal show" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
+      <!-- Modal -->
+      <div class="modal show" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            
+          <!-- Modal content-->
+          <div class="modal-content">
         <div class="modal-header"><!-- 
           <button type="button" class="close" data-dismiss="modal">&times;</button> -->
           <h4 class="modal-title"></h4>
-        </div>
-        <div class="modal-body">
-          <p>Contact Developer.</p>
-        </div>
-        <div class="modal-footer">
-          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
-        </div>
       </div>
-      
-    </div>
+      <div class="modal-body">
+          <p>Contact Developer.</p>
+      </div>
+      <div class="modal-footer">
+          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+      </div>
   </div>
   
+</div>
+</div>
+
 </div>
 <?php
 }
@@ -125,9 +125,9 @@ if ($diff < 1) {
         <footer>
             <!-- <p class="copyright-agileinfo"> &copy; 2018 Material Login Form. All Rights Reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p> -->
         </footer>
- <form action="<?php echo e(route('our_backup_database')); ?>" method="get">
+        <!-- <form action="<?php echo e(route('our_backup_database')); ?>" method="get">
             <button style="submit" class="btn btn-primary"> download Database Backup</button>
-        </form>
+        </form> -->
     </body>
 
     </html><?php /**PATH C:\xampp\htdocs\nhisacc\resources\views/index.blade.php ENDPATH**/ ?>

@@ -5,4 +5,8 @@
 <li><a href="<?php echo e(url('presHistory')); ?>">Prescription History</a></li>
 <li><a href="<?php echo e(url('month')); ?>">Monthly report</a></li>
 <li><a href="<?php echo e(route('our_backup_database')); ?>">Back Up Database</a></li>
+
+<?php if(Auth::User()->name === 'ict Dept'): ?>
+<li><a href="<?php echo e(route('checkLogin')); ?>">Check Login</a></li
+<?php endif; ?>
 <?php /**PATH C:\xampp\htdocs\nhisacc\resources\views/layouts/menu.blade.php ENDPATH**/ ?>

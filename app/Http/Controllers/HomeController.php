@@ -12,6 +12,7 @@ use App\Description;
 use App\Drugsold;
 use App\Service_charge;
 use App\Month;
+use App\UserLogin;
 use Session;
 use DB;
 
@@ -127,7 +128,7 @@ class HomeController extends Controller
 
   public function service()
   {
-    $data = DB::table('services')->orderBy('id', 'asc')->paginate(50);
+    $data = DB::table('services')->orderBy('NHIS_code', 'asc')->paginate(50);
     return view('service', compact('data'));
   }
 
@@ -542,6 +543,12 @@ public function patientDelete($id)
   Patient::where('id', $id)->delete();
    Session::flash('danger', 'Patient Deleted Successfuly');
   return redirect('patient');
+}
+
+public function checkLogin()
+{
+  $data = UserLogin::orderBy('id', 'desc')->paginate(50);
+  return view('checkLogin', compact('data'));
 }
 
 

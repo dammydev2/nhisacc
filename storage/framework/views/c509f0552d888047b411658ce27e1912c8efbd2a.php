@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 <div class="container">
   <div class="row">
 
@@ -10,15 +8,16 @@
     <div class="panel-heading">Add New Service <i class="fa fa-plus"></i></div>
     <div class="panel-body">
 
-      @if(Session::has('success'))
+      <?php if(Session::has('success')): ?>
       <div class="alert alert-success">
-        {{ Session::get('success') }}
+        <?php echo e(Session::get('success')); ?>
+
       </div>
-      @endif
+      <?php endif; ?>
 
-      <form method="post" action="{{ url('/enterservice') }}">
+      <form method="post" action="<?php echo e(url('/enterservice')); ?>">
 
-        @csrf
+        <?php echo csrf_field(); ?>
 
         <div class="form-group">
           <label class="control-label">NHIS CODE</label>
@@ -72,4 +71,6 @@
         return true;
       }
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\nhisacc\resources\views/addservice.blade.php ENDPATH**/ ?>
