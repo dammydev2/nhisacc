@@ -26,7 +26,6 @@
 					<th>Investigation</th>
 					<th>Procudure / Surgery</th>
 					<th>Amount</th>
-					<th>Privider</th>
 				</tr>
 				<?php $sum=0; ?>
 				@foreach($data as $row)
@@ -49,13 +48,11 @@
 					<td>{{ $row->investigation }}</td>
 					<td>{{ $row->surgery }}</td>
 					<td>{{ number_format($row->amount, 2) }}</td>
-					<td>{{ $row->provider }}</td>
 				</tr>
 				@endforeach
 				<tr>
 					<th colspan="9" class="text-right">TOTAL</th>
 					<th>{{ number_format($sum,2) }}</th>
-					<th></th>
 				</tr>
 			</table>
 

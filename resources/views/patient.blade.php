@@ -13,6 +13,7 @@
 		{{ $data->links() }}
 
 		<div class="span3 achievements-wrapper">
+			<P>Scroll left or right</P>
 			<table class="table" >
 				<tr>
 					<th colspan="16"><center><a href="{{ url('/addpatient') }}" class="btn btn-primary" ><i class="fa fa-user-plus">Add New patient</i></a></center></th>
@@ -71,7 +72,20 @@
 	{ 
 		height: 300px; 
 		width: 900px; 
-		overflow: auto; 
+		overflow: auto;
+		 &::-webkit-scrollbar {
+   width: 0.5em;
+   height: 0.5em;
+  }
+
+  &::-webkit-scrollbar-thumb {
+   background-color: rgba(255,255,255,.1);
+   border-radius: 3px;
+
+   &:hover {
+    background: rgba(255,255,255,.2);
+   }
+  }
 	}
 
 th, td{

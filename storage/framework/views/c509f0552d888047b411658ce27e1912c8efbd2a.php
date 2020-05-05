@@ -39,7 +39,7 @@
         </div>
 
         <div class="form-group">
-          <label class="control-label">DESCRIPTON</label>
+          <label class="control-label">DESCRIPTION</label>
           <div class="controls">
             <textarea class="form-control" name="description"></textarea>
           </div>

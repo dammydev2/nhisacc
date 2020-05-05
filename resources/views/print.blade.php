@@ -96,15 +96,15 @@
 						<td>{{ $row->dosage }}</td>
 						<td>{{ (int)$row->qty }}</td>
 						<td>{{ (int)$row->price }}</td>
-						<td>{{ $percent = number_format(((int)$row->qty * (int)$row->price) * 0.1, 2) }}</td>
-						<td>{{ $amount = number_format(((int)$row->qty * (int)$row->price),2) }}</td>
-						<td class="text-right">{{ number_format((int)$total2 = (int)$amount - (int)$percent, 2) }}</td>
+						<td>{{ $percent = number_format( $tenPercent = ( (float)$row->qty * (float)$row->price) * 0.1, 2) }}</td>
+						<td>{{ $amount = number_format( $theTotalFee = ((float)$row->qty * (float)$row->price),2) }}</td>
+						<td class="text-right">{{ number_format((float)$total2 = $theTotalFee - $tenPercent, 2) }}</td>
 					</tr>
-					<?php $sum1 += (int)$total2; ?>
+					<?php $sum1 += (float)$total2; ?>
 					@endforeach
 					<tr>
 						<td colspan="7"></td>
-						<td class="text-right">{{ number_format((int)$sum1,2) }}</td>
+						<td class="text-right">{{ number_format((float)$sum1,2) }}</td>
 					</tr>
 					<tr>
 						<th colspan="4">Details</th>
@@ -113,7 +113,7 @@
 					</tr>
 					@foreach($data4 as $row)
 					<tr>
-						<td colspan="5">{{ (int)$row->details }}</td>
+						<td colspan="5">{{ $row->details }}</td>
 						<td>{{ (int)$row->days }}</td>
 						<td class="text-right">{{ number_format((int)$total3 = (int)$row->days * (int)$row->price, 2) }}</td>
 					</tr>

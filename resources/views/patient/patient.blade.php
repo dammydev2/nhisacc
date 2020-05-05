@@ -17,7 +17,7 @@
 		@endif
 
 		{{ $data->links() }}
-
+<p>Scroll left or right</p>
 		<div class="span3 achievements-wrapper">
 			<table class="table" >
 				<tr>
@@ -78,6 +78,19 @@
 		height: 700px; 
 		width: 1000px; 
 		overflow: auto; 
+		 &::-webkit-scrollbar {
+   width: 0.5em;
+   height: 0.5em;
+  }
+
+  &::-webkit-scrollbar-thumb {
+   background-color: rgba(255,255,255,.1);
+   border-radius: 3px;
+
+   &:hover {
+    background: rgba(255,255,255,.2);
+   }
+  }
 	}
 
 th, td{

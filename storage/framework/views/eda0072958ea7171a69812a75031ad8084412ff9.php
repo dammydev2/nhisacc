@@ -94,15 +94,15 @@
 						<td><?php echo e($row->dosage); ?></td>
 						<td><?php echo e((int)$row->qty); ?></td>
 						<td><?php echo e((int)$row->price); ?></td>
-						<td><?php echo e($percent = number_format(((int)$row->qty * (int)$row->price) * 0.1, 2)); ?></td>
-						<td><?php echo e($amount = number_format(((int)$row->qty * (int)$row->price),2)); ?></td>
-						<td class="text-right"><?php echo e(number_format((int)$total2 = (int)$amount - (int)$percent, 2)); ?></td>
+						<td><?php echo e($percent = number_format( $tenPercent = ( (float)$row->qty * (float)$row->price) * 0.1, 2)); ?></td>
+						<td><?php echo e($amount = number_format( $theTotalFee = ((float)$row->qty * (float)$row->price),2)); ?></td>
+						<td class="text-right"><?php echo e(number_format((float)$total2 = $theTotalFee - $tenPercent, 2)); ?></td>
 					</tr>
-					<?php $sum1 += (int)$total2; ?>
+					<?php $sum1 += (float)$total2; ?>
 					<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 					<tr>
 						<td colspan="7"></td>
-						<td class="text-right"><?php echo e(number_format((int)$sum1,2)); ?></td>
+						<td class="text-right"><?php echo e(number_format((float)$sum1,2)); ?></td>
 					</tr>
 					<tr>
 						<th colspan="4">Details</th>
@@ -111,7 +111,7 @@
 					</tr>
 					<?php $__currentLoopData = $data4; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 					<tr>
-						<td colspan="5"><?php echo e((int)$row->details); ?></td>
+						<td colspan="5"><?php echo e($row->details); ?></td>
 						<td><?php echo e((int)$row->days); ?></td>
 						<td class="text-right"><?php echo e(number_format((int)$total3 = (int)$row->days * (int)$row->price, 2)); ?></td>
 					</tr>

@@ -63,7 +63,7 @@
         </div>
 
         <div class="form-group">
-          <label class="control-label">Service Provider</label>
+          <label class="control-label">HMO</label>
           <div class="controls">
             <input type="text" class="form-control" name="provider" placeholder="e.g: UNITED HEALTH CARE" id="required" required="required">
           </div>
