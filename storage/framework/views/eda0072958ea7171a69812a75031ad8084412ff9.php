@@ -18,13 +18,13 @@
 				
 
 
-				<h2 style="text-transform: uppercase;"><center>FEDERAL MEDICAL CENTRE, ABEOKUTA (FMCA)</center></h2>
+				<h4 style="text-transform: uppercase; font-weight: bold;"><center>FEDERAL MEDICAL CENTRE, ABEOKUTA</center></h4>
 
-				<h3 style="text-transform: uppercase;"><center><?php echo e($row->provider); ?></center></h3>
+				<h5 style="text-transform: uppercase;"><center><?php echo e($row->provider); ?></center></h5>
 
-				<h5 style="text-transform: uppercase;"><center>Fee Service claim form</center></h5>
+				<h5 style="text-transform: uppercase;"><center>Fee Service claim form for month of <?php echo e(date('M Y')); ?></center></h5>
 
-				<table class="table table-bordered">
+				<table border="1" style="width: 100%">
 					<tr>
 						<td><span>Name of Provider: </span><b>FMC ABEOKUTA</b></td>
 
@@ -56,12 +56,12 @@
 				</table>
 				<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
-				<table class="table table-bordered">
+				<table border="1">
 					<tr>
 						<th colspan="4">Details</th>
-						<th>Day(s)</th>
 						<th>Unit price</th>
-						<th>No of visit(s)</th>
+						<th>Days/No of visit(s)</th>
+						<th></th>
 						<th>Amount</th>
 					</tr>
 					<?php $sum=0; $sum1=0; $sum2=0; $surgeryCharge=0; $investigationCharge=0; ?>

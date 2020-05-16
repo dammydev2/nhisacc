@@ -123,7 +123,7 @@
              <th>Item Name</th>
              <th>Dosage</th>
              <th>Qty</th>
-             <th>10% deduction</th>
+             <th>Price</th>
              <th>Amount</th>
              <th></th>
            </tr>

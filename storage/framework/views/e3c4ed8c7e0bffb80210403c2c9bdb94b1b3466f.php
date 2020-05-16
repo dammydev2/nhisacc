@@ -26,13 +26,13 @@
                 <tbody>
                   <tr>
                     <td><input type="text" class="form-control" name="nm[]" value="INITIAL SPECIALIST CONSULTATION" readonly></td>
-                    <td><input type="number" class="form-control" min="1" name="amount[]"></td>
-                    <td><input type="number" min="1" value="1" class="form-control" name="day[]" style="display: none;"></td>
+                    <td><input type="number" class="form-control" min="0" name="amount[]"></td>
+                    <td><input type="number" min="0" value="0" class="form-control" name="day[]"></td>
                 </tr>
                 <tr>
                     <td><input type="text" class="form-control" name="nm[]" value="NUMBER OF REVIEWS" readonly></td>
-                    <td><input type="number" class="form-control" min="1" name="amount[]"></td>
-                    <td><input type="number" min="1" class="form-control" name="day[]"></td>
+                    <td><input type="number" class="form-control" min="0" name="amount[]"></td>
+                    <td><input type="number" min="0" class="form-control" name="day[]"></td>
                 </tr>
                 <tr>
                     <td><input type="text" class="form-control" name="nm[]" value="NURSING CARE DAYS" readonly></td>
