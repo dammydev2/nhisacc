@@ -5,11 +5,11 @@
 	<div class="row">
 <button onclick="window.print()" class="btn btn-primary">Print</button>
 		<div class="col-lg-10" style="border: 1px solid #000">
-			<h4><center>FEDERAL MEDICAL CENTRE, ABEOKUTA</center></h4>
+			<h5><center>FEDERAL MEDICAL CENTRE, ABEOKUTA</center></h5>
 			@foreach($data as $row)
 			@endforeach
-			<h4><center>{{ $row->provider }}</center></h4>
-			<h5><center>FEE SERVICE CLAIM FOR {{ $row->month }} / {{ $row->year }}</center></h5>
+			<h5><center>{{ $row->provider }}</center></h5>
+			<h6><center>FEE SERVICE CLAIM FOR {{ $row->month }} / {{ $row->year }}</center></h6>
 			
 
 

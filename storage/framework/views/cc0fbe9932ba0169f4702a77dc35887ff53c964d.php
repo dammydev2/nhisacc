@@ -3,11 +3,11 @@
 	<div class="row">
 <button onclick="window.print()" class="btn btn-primary">Print</button>
 		<div class="col-lg-10" style="border: 1px solid #000">
-			<h4><center>FEDERAL MEDICAL CENTRE, ABEOKUTA</center></h4>
+			<h5><center>FEDERAL MEDICAL CENTRE, ABEOKUTA</center></h5>
 			<?php $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 			<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-			<h4><center><?php echo e($row->provider); ?></center></h4>
-			<h5><center>FEE SERVICE CLAIM FOR <?php echo e($row->month); ?> / <?php echo e($row->year); ?></center></h5>
+			<h5><center><?php echo e($row->provider); ?></center></h5>
+			<h6><center>FEE SERVICE CLAIM FOR <?php echo e($row->month); ?> / <?php echo e($row->year); ?></center></h6>
 			
 
 

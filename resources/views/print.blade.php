@@ -126,7 +126,7 @@
 					<?php $allsum = $sum + $sum1 + $sum2 ?>
 					<tr>
 						<th colspan="7" class="text-right">GRAND TOTAL</th>
-						<th class="text-right">{{ number_format((int)$allsum,2) }}</th>
+						<th class="text-right">{{ number_format((float)$allsum,2) }}</th>
 					</tr>
 
 				</table>
